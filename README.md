@@ -68,3 +68,28 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+Font name: 
+font-family: 'Segoe UI', sans-serif;
+
+colors number:
+Color | Usage
+⚽️ Navy Blue (#002B5B) | Primary (navbar, buttons)
+⚽️ Sky Blue (#00B4D8) | Accent (hover effects, links)
+⚽️ White (#FFFFFF) | Background
+⚽️ Light Gray (#F4F4F4) | Cards, forms
+⚽️ Dark Red (#D00000) | Warnings, red cards
+
+Logo:
+
+![LogoHome](https://github.com/user-attachments/assets/643f3b95-0bc3-4e9e-97b6-1471396e9d8a)
+
+
+Database: MySQL
+
+Backend: Node.js + Express.js
+
+FrontEnd: React + Bootstrap
+
+Platform: vcs
