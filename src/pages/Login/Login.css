@@ -1,0 +1,118 @@
+.login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+
+  .login-form {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .login-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .login-icon {
+    font-size: 2rem;
+    color: #002b5b;
+  }
+  
+  .login-header h2 {
+    margin: 0.5rem 0;
+    font-size: 1.8rem;
+    color: #002b5b;
+  }
+  
+  .login-header span {
+    font-size: 0.9rem;
+    color: gray;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* padding-left for icon */
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.5;
+    box-sizing: border-box;
+    background-color: #fff;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #002b5b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .login-btn:hover {
+    background-color: #004a87;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #0077cc;
+    text-decoration: none;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
+  .login-form input {
+    width: 100%;          /* Keep full width */
+    padding: 10px 30px;   /* Adjusted for icon space */
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; 
+  }
+  .login-icon {
+    width: 90px;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #fff inset !important;
+    -webkit-text-fill-color: #000 !important;
+  }
+  
+    

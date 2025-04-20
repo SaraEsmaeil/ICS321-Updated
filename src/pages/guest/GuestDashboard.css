@@ -1,0 +1,14 @@
+.guest-dashboard-layout {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .guest-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  

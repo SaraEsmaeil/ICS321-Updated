@@ -1,0 +1,57 @@
+.match-summary {
+    margin-top: 40px;
+  }
+  
+  .match-summary h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .match-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .match-section {
+    background-color: #f3f3f3;
+    border-radius: 12px;
+    padding: 20px;
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .match-section h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  .match-box {
+    background-color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .team-name {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  
+  .score {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  
+  .match-time {
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  

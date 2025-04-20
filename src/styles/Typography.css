@@ -1,0 +1,81 @@
+/* GLOBAL FONT SETTINGS */
+body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    color: #111827;
+  }
+  
+  /* === SECTION HEADINGS === */
+  .text-title {
+    font-size: 18px;
+    font-weight: 500; /* or 400 for normal */
+    margin-bottom: 15px;
+    color: #111827;
+  }
+  
+  /* === SUBSECTION HEADINGS (e.g., inside cards) === */
+  .text-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  
+  /* === STAT CARDS === */
+  .text-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+  }
+  
+  .text-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+  }
+  
+  /* === TOURNAMENTS === */
+  .text-tournament-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .text-tournament-sub {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 400;
+  }
+  
+  /* === MATCHES === */
+  .text-team-name {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .text-score {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  
+  .text-match-time {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+  }
+  
+  /* === BADGES === */
+  .badge {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  
+  .badge.in-progress {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+  
+  .badge.completed {
+    background-color: #e0e7ff;
+    color: #3730a3;
+  }
+  

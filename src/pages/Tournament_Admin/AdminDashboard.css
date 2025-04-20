@@ -1,0 +1,12 @@
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #ffffff;
+  }
+  
+  .admin-main {
+    margin-left: 220px;
+    padding: 30px 40px;
+    flex-grow: 1;
+  }
+  

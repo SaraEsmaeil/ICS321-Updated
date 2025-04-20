@@ -1,0 +1,77 @@
+.recent-tournaments {
+    margin-top: 30px;
+  }
+  
+  .recent-tournaments h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .tournament-list {
+    background-color: #f3f3f3;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .tournament-card {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .tournament-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .trophy-icon {
+    color: #00b4d8;
+    font-size: 20px;
+  }
+  
+  .tournament-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: 1.2;
+  }
+  
+  .tournament-name {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .tournament-sub {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .badge {
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  
+  .in-progress {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+  
+  .completed {
+    background-color: #e0e7ff;
+    color: #3730a3;
+  }
+  

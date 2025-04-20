@@ -1,0 +1,78 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  
+  
+  .home-content {
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem; 
+  }
+  
+  
+  .home-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 0;       
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  
+  .home-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .btn-admin {
+    background-color: #00b4d8;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btn-guest {
+    background-color: white;
+    color: #002b5b;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btn-admin:hover,
+  .btn-guest:hover {
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+  }
+  .home-logo {
+    width: 200px; 
+    margin-bottom: 0; 
+    padding-bottom: 0;
+    display: block;
+    
+  }
+  
