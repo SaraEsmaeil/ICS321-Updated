@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
-import bgImage from '../assets/stadium-bg.png'; 
+import bgImage from '../../assets/stadium-bg.png'; 
 import { FaLock, FaUser } from 'react-icons/fa';
-import logo from '../assets/LogoHome.png'; 
+import logo from '../../assets/LogoHome.png'; 
 
 
 const Home = () => {

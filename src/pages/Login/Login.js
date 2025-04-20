@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import './Login.css';
-import bgImage from '../assets/stadium-bg.png'; 
+import bgImage from '../../assets/stadium-bg.png'; 
 
 
 import { FaUser, FaLock, FaArrowLeft, FaSignInAlt } from 'react-icons/fa';
@@ -38,7 +38,7 @@ const Login = () => {
       <div className="login-overlay">
         <form className="login-form" onSubmit={handleLogin}>
           <div className="login-header">
-          <img src={require('../assets/LogoBlue.png')} alt="Tournament Logo" className="login-icon" />
+          <img src={require('../../assets/LogoBlue.png')} alt="Tournament Logo" className="login-icon" />
 
             <h2>Tournament Hub</h2>
             <span>{role === 'admin' ? 'Admin Login' : 'Guest Login'}</span>
