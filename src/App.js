@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import AdminDashboard from './pages/Tournament_Admin/AdminDashboard';
 import AddTournament from './pages/Tournament_Admin/AddTournament'; 
 import GuestDashboard from './pages/guest/GuestDashboard';
+import AssignCaptain from './pages/Tournament_Admin/AssignCaptain';
 import './App.css';
 
 function App() {
@@ -16,10 +17,8 @@ function App() {
           <Route path="/login" element={<Login />} /> 
           <Route path="/admin" element={<AdminDashboard />} /> 
           <Route path="/admin/add-tournament" element={<AddTournament />} />
+          <Route path="/admin/assign-captain" element={<AssignCaptain />} />
           <Route path="/guest" element={<GuestDashboard />} />
-
-
-       
         </Routes>
       </div>
     </Router>
