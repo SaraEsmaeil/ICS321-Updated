@@ -1,0 +1,64 @@
+.schedule-container {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+  }
+  
+  .schedule-card {
+    background-color: #F4F4F4;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  .schedule-card h2 {
+    color: #002B5B;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .schedule-card label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #002B5B;
+    font-weight: 600;
+  }
+  
+  .schedule-card input,
+  .schedule-card select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .btn-submit {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 12px 16px; /* slightly more padding for balance */
+    background-color: #002B5B;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  
+  .btn-submit:hover {
+    background-color: #00B4D8;
+  }
+  

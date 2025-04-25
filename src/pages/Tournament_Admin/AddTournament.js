@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import './AddTournament.css';
 import { FaPlus } from 'react-icons/fa';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddTournament = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    number: '',
-    startDate: '',
-    endDate: ''
+    tr_name: '',
+    start_date: '',
+    end_date: ''
   });
+
+  const [success, setSuccess] = useState(false); // ✅ NEW STATE
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,31 +18,43 @@ const AddTournament = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Tournament added:', formData);
-    // Add your backend logic here (e.g. axios.post)
+    const tournamentData = {
+      tr_id: uuidv4(),
+      ...formData
+    };
+
+    console.log('Tournament added:', tournamentData);
+
+    // ✅ Show success message
+    setSuccess(true);
+
+    // ✅ Clear the form
+    setFormData({
+      tr_name: '',
+      start_date: '',
+      end_date: ''
+    });
+
+    // ✅ Hide message after 3 seconds
+    setTimeout(() => setSuccess(false), 3000);
   };
 
   return (
     <div className="add-tournament-container">
       <div className="form-card">
         <h2 className="form-title">Add New Tournament</h2>
+
+        {success && <p className="success-message">✅ Tournament added successfully!</p>}
+
         <form onSubmit={handleSubmit}>
           <label>Tournament Name</label>
           <input
             type="text"
-            name="name"
+            name="tr_name"
             placeholder="Enter tournament name"
-            value={formData.name}
+            value={formData.tr_name}
             onChange={handleChange}
-          />
-
-          <label>Tournament Number</label>
-          <input
-            type="text"
-            name="number"
-            placeholder="Enter tournament number"
-            value={formData.number}
-            onChange={handleChange}
+            required
           />
 
           <div className="date-fields">
@@ -48,18 +62,20 @@ const AddTournament = () => {
               <label>Start Date</label>
               <input
                 type="date"
-                name="startDate"
-                value={formData.startDate}
+                name="start_date"
+                value={formData.start_date}
                 onChange={handleChange}
+                required
               />
             </div>
             <div>
               <label>End Date</label>
               <input
                 type="date"
-                name="endDate"
-                value={formData.endDate}
+                name="end_date"
+                value={formData.end_date}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -73,4 +89,4 @@ const AddTournament = () => {
   );
 };
 
-export default AddTournament;
+export default AddTournament; 

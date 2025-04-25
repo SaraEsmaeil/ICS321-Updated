@@ -1,107 +1,87 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './AssignCaptain.css';
-// Dummy data for testing
-const dummyTeams = [
-  {
-    id: '1',
-    name: 'Team A',
-    members: [
-      { id: '101', name: 'Ahmed' },
-      { id: '102', name: 'Majid' },
-      { id: '103', name: 'Saeed' },
-    ],
-  },
-  {
-    id: '2',
-    name: 'Team B',
-    members: [
-      { id: '201', name: 'Fahd' },
-      { id: '202', name: 'Yasir' },
-      { id: '203', name: 'Mohammed' },
-    ],
-  },
-];
-// Import CSS for styling
-// Ensure this component is rendered when "Assign Captain" is clicked in the sidebar
-// Example using React Router for routing:
 
+const AssignCaptain = () => {
+  const [formData, setFormData] = useState({
+    match: '',
+    team: '',
+    player: ''
+  });
 
+  // Mock data (replace with actual API later)
+  const matches = [
+    { match_no: 1, name: 'Match 1 – Falcons vs Tigers', teams: ['Falcons', 'Tigers'] },
+    { match_no: 2, name: 'Match 2 – Eagles vs Wolves', teams: ['Eagles', 'Wolves'] }
+  ];
 
-const AssignCaptain = ({ teams = dummyTeams, onAssignCaptain = () => {} }) => {
+  const players = {
+    Falcons: ['Mohammed', 'Ali Hassan'],
+    Tigers: ['Khalid', 'Zayd Khan'],
+    Eagles: ['Sami Omar', 'Saud'],
+    Wolves: ['Yusuf Ali', 'Fahad']
+  };
 
-    const [selectedTeam, setSelectedTeam] = useState('');
-    const [teamMembers, setTeamMembers] = useState([]);
-    const [selectedCaptain, setSelectedCaptain] = useState('');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+      ...(name === 'team' ? { player: '' } : {}) // reset player on team change
+    }));
+  };
 
-    useEffect(() => {
-        if (selectedTeam) {
-            // Fetch team members based on the selected team
-            const team = teams.find((team) => team.id === selectedTeam);
-            setTeamMembers(team ? team.members : []);
-        } else {
-            setTeamMembers([]);
-        }
-        setSelectedCaptain('');
-    }, [selectedTeam, teams]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitted:', formData);
+    alert(`✅ Captain assigned successfully to ${formData.team}`);
+    // TODO: Send to backend (match_captain table)
+  };
 
-    const handleAssignCaptain = () => {
-        if (selectedTeam && selectedCaptain) {
-            try {
-                onAssignCaptain(selectedTeam, selectedCaptain);
-                alert(`Captain assigned successfully!`);
-                // Reset the form after assigning
-                setSelectedTeam('');
-                setTeamMembers([]);
-                setSelectedCaptain('');
-            } catch (error) {
-                console.error('Error assigning captain:', error);
-                alert('An error occurred while assigning the captain. Please try again.');
-            }
-        } else {
-            alert('Please select a team and a captain.');
-        }
-    };
+  const selectedMatch = matches.find(m => m.match_no.toString() === formData.match);
 
-    return (
-        <div className="assign-captain-container">
-            <h2>Assign Captain</h2>
-            <div className="form-group">
-                <label htmlFor="team">Select Team:</label>
-                <select
-                    id="team"
-                    value={selectedTeam}
-                    onChange={(e) => setSelectedTeam(e.target.value)}
-                >
-                    <option value="">-- Select Team --</option>
-                    {teams.map((team) => (
-                        <option key={team.id} value={team.id}>
-                            {team.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            {teamMembers.length > 0 && (
-                <div className="form-group">
-                    <label htmlFor="captain">Select Captain:</label>
-                    <select
-                        id="captain"
-                        value={selectedCaptain}
-                        onChange={(e) => setSelectedCaptain(e.target.value)}
-                    >
-                        <option value="">-- Select Captain --</option>
-                        {teamMembers.map((member) => (
-                            <option key={member.id} value={member.id}>
-                                {member.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-            )}
-            <button className="assign-button" onClick={handleAssignCaptain}>
-                Assign Captain
-            </button>
-        </div>
-    );
+  return (
+    <div className="assign-captain-container">
+      <div className="assign-card">
+        <h2>Assign Match Captain</h2>
+        <p>Select a match, then a team, and assign its captain.</p>
+        <form onSubmit={handleSubmit}>
+          <label>Match</label>
+          <select name="match" value={formData.match} onChange={handleChange} required>
+            <option value="">Select a match</option>
+            {matches.map(match => (
+              <option key={match.match_no} value={match.match_no}>{match.name}</option>
+            ))}
+          </select>
+
+          {formData.match && (
+            <>
+              <label>Team</label>
+              <select name="team" value={formData.team} onChange={handleChange} required>
+                <option value="">Select a team</option>
+                {selectedMatch.teams.map(team => (
+                  <option key={team} value={team}>{team}</option>
+                ))}
+              </select>
+            </>
+          )}
+
+          {formData.team && (
+            <>
+              <label>Captain</label>
+              <select name="player" value={formData.player} onChange={handleChange} required>
+                <option value="">Select a player</option>
+                {players[formData.team]?.map(player => (
+                  <option key={player} value={player}>{player}</option>
+                ))}
+              </select>
+            </>
+          )}
+
+          <button type="submit" className="assign-btn">Assign Captain</button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default AssignCaptain;

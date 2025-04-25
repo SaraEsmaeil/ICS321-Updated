@@ -40,9 +40,6 @@ const SidebarNav = () => {
         <li>
           <Link to="/admin/card-management"><FaRegIdCard /> <span>Card Management</span></Link>
         </li>
-        <li>
-          <Link to="/admin/best-player"><FaStar /> <span>Best Player</span></Link>
-        </li>
         <li className="delete">
           <Link to="/admin/delete-tournament"><FaTrash /> <span>Delete Tournament</span></Link>
         </li>

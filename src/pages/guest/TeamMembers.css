@@ -1,0 +1,55 @@
+.team-members-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .team-members-container .team-info {
+    background-color: #f4f4f4;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .team-members-container h2 {
+    color: #002b5b;
+  }
+  
+  .team-members-container h3 {
+    color: #00b4d8;
+    margin-top: 1.5rem;
+  }
+  
+  .team-members-container h4 {
+    color: #002b5b;
+  }
+  
+  .team-members-container select {
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .team-members-container ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+  }
+  
+  .team-members-container ul li {
+    background-color: #f4f4f4;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .team-members-container .manager,
+  .team-members-container .coach,
+  .team-members-container .captain {
+    margin-top: 1rem;
+  }
+  

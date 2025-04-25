@@ -1,47 +1,45 @@
-.assign-captain-container {
+
+.card-container {
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     padding: 3rem 1rem;
   }
   
-  .assign-card {
+  .card-form {
     background-color: #F4F4F4;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 10px;
+    max-width: 600px;
     width: 100%;
-    max-width: 500px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
   
-  .assign-card h2 {
+  .card-form h2 {
     color: #002B5B;
-    margin-bottom: 0.3rem;
-    text-align: center;
-  }
-  
-  .assign-card p {
-    color: #444;
-    font-size: 0.9rem;
     text-align: center;
     margin-bottom: 1.5rem;
   }
   
-  .assign-card label {
+  .card-form label {
     display: block;
-    margin: 1rem 0 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
     color: #002B5B;
     font-weight: 600;
   }
   
-  .assign-card select {
+  .card-form input,
+  .card-form select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
   }
   
-  .assign-btn {
+  .btn-submit {
     width: 100%;
     margin-top: 2rem;
     padding: 10px;
@@ -51,10 +49,10 @@
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
   }
   
-  .assign-btn:hover {
+  .btn-submit:hover {
     background-color: #00B4D8;
   }
   

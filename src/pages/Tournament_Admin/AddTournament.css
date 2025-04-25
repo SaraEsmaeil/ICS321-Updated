@@ -12,7 +12,7 @@
     padding: 30px;
     border-radius: 10px;
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
   
@@ -22,7 +22,19 @@
     margin-bottom: 25px;
     color: #0f2b51;
   }
-  
+
+  .date-fields {
+  display: flex;
+  gap: 1.5rem; /* <-- Controls the space between the two inputs */
+  margin-bottom: 1.5rem;
+}
+
+.date-fields > div {
+  flex: 1;         /* Make both date fields share space equally */
+  display: flex;
+  flex-direction: column;
+}
+
   label {
     font-weight: 500;
     display: block;
@@ -66,4 +78,15 @@
   .btn-submit:hover {
     background-color: #002147;
   }
+  .success-message {
+    color: green;
+    font-weight: 500;
+    background-color: #e8fbe8;
+    border: 1px solid #b6e7b6;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
   
