@@ -1,0 +1,127 @@
+.red-cards-container {
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #FFFFFF;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.red-cards-title {
+    color: #002B5B;
+    border-bottom: 2px solid #00B4D8;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.red-cards-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.red-card {
+    background-color: #F4F4F4;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 4px solid #D00000;
+    transition: transform 0.2s ease;
+}
+
+.red-card:hover {
+    transform: translateY(-2px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.red-card-icon {
+    font-size: 1.8rem;
+    margin-right: 0.5rem;
+}
+
+.player-info h2 {
+    color: #002B5B;
+    margin: 0 0 0.25rem 0;
+    font-size: 1.25rem;
+}
+
+.team-match {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.team {
+    background-color: #002B5B;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.match {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid #E0E0E0;
+}
+
+.minute {
+    background-color: #D00000;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.match-context {
+    text-align: right;
+}
+
+.match-date {
+    display: block;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.competition {
+    display: block;
+    color: #00B4D8;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .red-cards-container {
+        padding: 1rem;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .team-match {
+        flex-wrap: wrap;
+    }
+    
+    .card-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .match-context {
+        text-align: left;
+    }
+}

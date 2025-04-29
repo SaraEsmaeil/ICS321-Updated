@@ -14,10 +14,10 @@ import EnterMatchResults from './pages/Tournament_Admin/EnterMatchResults';
 import CardManagement from './pages/Tournament_Admin/CardManagement';
 import Fields from './pages/Tournament_Admin/Fields';
 import TeamMembers from './pages/guest/TeamMembers';
-
+import MatchResults from './pages/guest/MatchResults';
+import RedCards from './pages/guest/RedCards';
 
 import './App.css';
-
 function App() {
   return (
     <Router>
@@ -37,7 +37,8 @@ function App() {
           <Route path="/admin/card-management" element={<CardManagement />} />
           <Route path="/admin/fields" element={<Fields />} />
           <Route path="/guest/teams-players" element={<TeamMembers />} /> 
-         
+          <Route path="/guest/match-results" element={<MatchResults />} /> 
+          <Route path="/guest/red-cards" element={<RedCards />} /> 
 
           
 
