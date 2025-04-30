@@ -5,7 +5,7 @@ import logo from '../assets/LogoHome.png';
 import {
   FaTrophy, FaThList, FaUserPlus, FaUserTie, FaUserCheck,
   FaCalendarAlt, FaClipboardList, FaRegIdCard, FaStar,
-  FaTrash, FaMapMarkedAlt
+  FaTrash, FaMapMarkedAlt, FaEye
 } from 'react-icons/fa';
 
 const SidebarNav = () => {
@@ -18,6 +18,9 @@ const SidebarNav = () => {
       <ul>
         <li>
           <Link to="/admin/add-tournament"><FaTrophy /> <span>Add Tournament</span></Link>
+        </li>
+        <li>
+          <Link to="/admin/view-tournaments"><FaEye /><span>View Tournaments</span></Link>
         </li>
         <li>
           <Link to="/admin/add-team"><FaThList /> <span>Add Team</span></Link>

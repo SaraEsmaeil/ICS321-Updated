@@ -1,0 +1,70 @@
+/* ViewTournament.css */
+.view-tournament-container {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2rem;
+    background-color: #FFFFFF;
+    min-height: 100vh;
+}
+
+.view-tournament-container h1 {
+    color: #002B5B;
+    margin-bottom: 2rem;
+}
+
+/* Filter Section */
+.filter-section {
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.filter-section label {
+    color: #002B5B;
+    font-weight: 600;
+}
+
+.filter-section select {
+    padding: 0.5rem 1rem;
+    border: 2px solid #002B5B;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    font-family: 'Segoe UI', sans-serif;
+    color: #002B5B;
+    transition: all 0.3s ease;
+}
+
+.filter-section select:hover {
+    border-color: #00B4D8;
+    cursor: pointer;
+}
+
+/* Tournament Cards */
+.tournament-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.tournament-card {
+    background-color: #F4F4F4;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tournament-card h2 {
+    color: #002B5B;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.tournament-card p {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.tournament-card p:last-child {
+    color: #D00000;
+    font-weight: 600;
+    margin-top: 1rem;
+}

@@ -18,6 +18,7 @@ import MatchResults from './pages/guest/MatchResults';
 import RedCards from './pages/guest/RedCards';
 import DeleteTournament from './pages/Tournament_Admin/DeleteTournament';
 import './App.css';
+import ViewTournament from './pages/Tournament_Admin/ViewTournament';
 function App() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" element={<Login />} /> 
           <Route path="/admin" element={<AdminDashboard />} /> 
           <Route path="/admin/add-tournament" element={<AddTournament />} />
+          <Route path="/admin/view-tournaments" element={<ViewTournament />} />
           <Route path="/admin/assign-captain" element={<AssignCaptain />} />
           <Route path="/guest" element={<GuestDashboard />} />
           <Route path="/guest/top-scorers" element={<BrowsePlayerHighestGoal />} />
@@ -40,9 +42,7 @@ function App() {
           <Route path="/guest/teams-players" element={<TeamMembers />} /> 
           <Route path="/guest/match-results" element={<MatchResults />} /> 
           <Route path="/guest/red-cards" element={<RedCards />} /> 
-
           
-
         </Routes>
       </div>
     </Router>
