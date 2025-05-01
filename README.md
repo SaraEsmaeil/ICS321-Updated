@@ -23,6 +23,13 @@ FrontEnd: React + Bootstrap
 
 Platform: vcs
 
+System Users Log In:
+• Tournament Admin: 
+Username:
+Password:
+
+• Guest: for everyone(e.g., Faculty, Student, Staff, etc)
+
 
 ### code structure 
 
