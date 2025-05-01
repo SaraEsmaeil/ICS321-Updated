@@ -25,8 +25,10 @@ Platform: vcs
 
 System Users Log In:
 • Tournament Admin: 
-Username:
-Password:
+
+Username:tournament 
+
+Password:tournament
 
 • Guest: for everyone(e.g., Faculty, Student, Staff, etc)
 
