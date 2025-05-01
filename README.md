@@ -24,11 +24,12 @@ FrontEnd: React + Bootstrap
 Platform: vcs
 
 System Users Log In:
+
 • Tournament Admin: 
 
-Username:tournament 
+Username: tournament 
 
-Password:tournament
+Password: tournament
 
 • Guest: for everyone(e.g., Faculty, Student, Staff, etc)
 
