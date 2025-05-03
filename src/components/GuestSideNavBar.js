@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/LogoHome.png';
 
 import { 
-  FaTrophy,       // View Tournaments 
-  FaFutbol,       // Match Results (⚽)
-  FaSitemap,      // Top Scorers
-  FaSquareFull,   // Red Cards (🟥) -- we'll color this one red
-  FaUsers         // Teams & Players
+  FaTrophy,       
+  FaFutbol,       
+  FaSitemap,      
+  FaSquareFull,   
+  FaUsers,        
+  FaUserPlus 
 } from 'react-icons/fa';
 
 const GuestSideBarNav = () => {
@@ -44,6 +45,12 @@ const GuestSideBarNav = () => {
             <FaUsers /> <span>Teams & Players</span>
           </Link>
         </li>
+        <li>
+  <Link to="/guest/join-team">
+    <FaUserPlus /> <span>Join a Team</span>
+  </Link>
+</li>
+
       </ul>
     </div>
   );

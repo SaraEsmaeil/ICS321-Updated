@@ -16,6 +16,7 @@ import Fields from './pages/Tournament_Admin/Fields';
 import TeamMembers from './pages/guest/TeamMembers';
 import MatchResults from './pages/guest/MatchResults';
 import RedCards from './pages/guest/RedCards';
+import JoinTeam from './pages/guest/JoinTeam';
 import DeleteTournament from './pages/Tournament_Admin/DeleteTournament';
 import './App.css';
 import ViewTournament from './pages/Tournament_Admin/ViewTournament';
@@ -42,6 +43,7 @@ function App() {
           <Route path="/guest/teams-players" element={<TeamMembers />} /> 
           <Route path="/guest/match-results" element={<MatchResults />} /> 
           <Route path="/guest/red-cards" element={<RedCards />} /> 
+          <Route path="/guest/join-team" element={<JoinTeam />} />
           
         </Routes>
       </div>

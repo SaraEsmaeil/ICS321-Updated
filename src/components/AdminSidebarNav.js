@@ -5,7 +5,7 @@ import logo from '../assets/LogoHome.png';
 import {
   FaTrophy, FaThList, FaUserPlus, FaUserTie, FaUserCheck,
   FaCalendarAlt, FaClipboardList, FaRegIdCard, FaStar,
-  FaTrash, FaMapMarkedAlt, FaEye
+  FaTrash, FaMapMarkedAlt, FaEye, FaSignOutAlt // <- Added logout icon
 } from 'react-icons/fa';
 
 const SidebarNav = () => {
@@ -48,6 +48,9 @@ const SidebarNav = () => {
         </li>
         <li>
           <Link to="/admin/fields"><FaMapMarkedAlt /> <span>Fields</span></Link>
+        </li>
+        <li className="logout">
+          <Link to="/"><FaSignOutAlt /> <span>Logout</span></Link>
         </li>
       </ul>
     </div>
