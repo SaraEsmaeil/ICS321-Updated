@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './ScheduleMatch.css';
 
 const ScheduleMatch = () => {
   const [formData, setFormData] = useState({
     match_no: '',
+    tr_id: '', // Add tournament ID
     play_stage: '',
     play_date: '',
     team_id1: '',
@@ -11,29 +13,76 @@ const ScheduleMatch = () => {
     venue_id: ''
   });
 
-  // Dummy data — replace with API call later
-  const teams = [
-    { id: 'T001', name: 'Falcons' },
-    { id: 'T002', name: 'Tigers' },
-    { id: 'T003', name: 'Wolves' },
-    { id: 'T004', name: 'Eagles' }
-  ];
+  const [teams, setTeams] = useState([]);
+  const [venues, setVenues] = useState([]);
+  const [tournaments, setTournaments] = useState([]);
 
-  const venues = [
-    { id: 'V001', name: 'Main Stadium' },
-    { id: 'V002', name: 'West Field' },
-    { id: 'V003', name: 'East Arena' }
-  ];
+
+  // Fetch data on mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [teamsRes, venuesRes, tournamentsRes] = await Promise.all([
+          axios.get('http://localhost:3001/api/teams'),
+          axios.get('http://localhost:3001/api/venues'),
+          axios.get('http://localhost:3001/api/tournaments')
+        ]);
+        console.log('Tournaments raw response:', tournamentsRes.data);
+
+        setTeams(teamsRes.data);
+        setVenues(venuesRes.data);
+        setTournaments(Array.isArray(tournamentsRes.data) ? tournamentsRes.data : []);
+      } catch (error) {
+        console.error('Fetch error:', error);
+        alert('Failed to load dropdown data.');
+      }
+    };
+    fetchData();
+  }, []);
+        
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Match Scheduled:', formData);
-    alert(`✅ Match #${formData.match_no} scheduled successfully!`);
-    // TODO: Send to backend
+    try {
+      const payload = {
+        match_no: Number(formData.match_no),
+        tr_id: Number(formData.tr_id),
+        play_stage: formData.play_stage,
+        play_date: formData.play_date,
+        team_id1: Number(formData.team_id1),
+        team_id2: Number(formData.team_id2),
+        venue_id: Number(formData.venue_id)
+      };
+      
+      const response = await axios.post(
+        'http://localhost:3001/api/matches', // Add full backend URL
+        payload
+      );
+      
+      if (response.data.success) {
+        alert(`✅ ${response.data.message}`);
+        setFormData({
+          match_no: '',
+          tr_id: '',
+          play_stage: '',
+          play_date: '',
+          team_id1: '',
+          team_id2: '',
+          venue_id: ''
+        });
+        
+      }
+    } catch (error) {
+      const errorMessage = error.response?.data?.error || 
+                          error.response?.data?.details || 
+                          'Failed to schedule match';
+      console.error('Error Details:', error.response?.data);
+      alert(`❌ Error: ${errorMessage}`);
+    }
   };
 
   return (
@@ -41,17 +90,24 @@ const ScheduleMatch = () => {
       <div className="schedule-card">
         <h2>Schedule Match</h2>
         <form onSubmit={handleSubmit}>
-          <label>Match Number</label>
+          {/* Match Number */}
           <input
-            type="text"
+            type="number"
             name="match_no"
-            placeholder="Enter match number"
+            placeholder="Match Number"
             value={formData.match_no}
             onChange={handleChange}
             required
           />
+          <select name="tr_id" value={formData.tr_id} onChange={handleChange} required>
+  <option value="">Select Tournament</option>
+  {(Array.isArray(tournaments) ? tournaments : []).map(t => (
+    <option key={t.id} value={t.id}>{t.name}</option>
+  ))}
+</select>
 
-          <label>Play Stage</label>
+
+          {/* Play Stage Dropdown */}
           <select name="play_stage" value={formData.play_stage} onChange={handleChange} required>
             <option value="">Select Stage</option>
             <option value="G">Group</option>
@@ -61,7 +117,7 @@ const ScheduleMatch = () => {
             <option value="F">Final</option>
           </select>
 
-          <label>Play Date</label>
+          {/* Date Picker */}
           <input
             type="date"
             name="play_date"
@@ -70,7 +126,7 @@ const ScheduleMatch = () => {
             required
           />
 
-          <label>Team 1</label>
+          {/* Team Selection */}
           <select name="team_id1" value={formData.team_id1} onChange={handleChange} required>
             <option value="">Select Team 1</option>
             {teams.map(team => (
@@ -78,17 +134,16 @@ const ScheduleMatch = () => {
             ))}
           </select>
 
-          <label>Team 2</label>
           <select name="team_id2" value={formData.team_id2} onChange={handleChange} required>
             <option value="">Select Team 2</option>
             {teams
-              .filter(team => team.id !== formData.team_id1)
+              .filter(t => t.id !== formData.team_id1)
               .map(team => (
                 <option key={team.id} value={team.id}>{team.name}</option>
               ))}
           </select>
 
-          <label>Venue</label>
+          {/* Venue Selection */}
           <select name="venue_id" value={formData.venue_id} onChange={handleChange} required>
             <option value="">Select Venue</option>
             {venues.map(venue => (
@@ -96,7 +151,7 @@ const ScheduleMatch = () => {
             ))}
           </select>
 
-          <button type="submit" className="btn-submit">Schedule Match</button>
+          <button type="submit" className="btn-submit" >Schedule Match</button>
         </form>
       </div>
     </div>

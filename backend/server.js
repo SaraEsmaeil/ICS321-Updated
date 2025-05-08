@@ -2,27 +2,60 @@ const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const pool = require('./db');
+const adminRoutes = require('./routes/admin');
+const matchesRouter = require('./routes/matches');
+const playersRouter = require('./routes/players'); // Add this line
+const tournamentRouter = require('./routes/tournaments'); // Add this line
+const captainsRouter = require('./routes/captains'); // path may vary
+
+
+
 
 const app = express();
+
+// Security middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// 👉 Routes mounting
-app.use('/tournaments', require('./routes/tournaments'));
-app.use('/teams', require('./routes/teams'));
-app.use('/players', require('./routes/players'));
-app.use('/matches', require('./routes/matches'));
-app.use('/cards', require('./routes/cards'));
-app.use('/stats', require('./routes/stats'));
-app.use('/fields', require('./routes/fields'));
-app.use('/join-requests', require('./routes/joinRequests'));
 
-// ✅ Logs for ENV
-console.log("📦 ENV TEST → EMAIL =", process.env.EMAIL);
-console.log("📦 ENV TEST → PASSWORD =", process.env.PASSWORD ? "Loaded ✅" : "Missing ❌");
+// Routes
+app.use('/api/admin', adminRoutes);
+app.use('/api/tournaments',tournamentRouter );
+app.use('/api/teams', require('./routes/teams'));
+app.use('/api/players', playersRouter); // Add this line
+app.use('/api/cards', require('./routes/cards'));
+app.use('/api/stats', require('./routes/stats'));
+app.use('/api/join-requests', require('./routes/join_requests'));
+app.use('/api/venues', require('./routes/venues'));
+app.use('/api', matchesRouter);
+app.use('/api', captainsRouter);
+// Health check
+app.get('/api/health', async (req, res) => {
+  try {
+    await pool.query('SELECT 1');
+    res.json({ 
+      status: 'ok',
+      database: 'connected',
+      uptime: process.uptime()
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'down',
+      database: 'disconnected',
+      error: error.message
+    });
+  }
+});
 
-// ✉️ Email transporter
-let transporter = nodemailer.createTransport({
+// Email configuration validation
+if (!process.env.EMAIL || !process.env.PASSWORD) {
+  console.error('❌ Missing email credentials in .env');
+  process.exit(1);
+}
+
+const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL,
@@ -30,28 +63,8 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-// ✅ Define an endpoint to trigger email manually
-app.post('/send-notification', (req, res) => {
-  const { to, subject, text } = req.body;  // use req.body data for dynamic email
-
-  let mailOptions = {
-    from: process.env.EMAIL,
-    to: to || 'dr.maher8496@gmail.com',  // fallback email if no `to` provided
-    subject: subject || 'Team Notification',
-    text: text || 'Next match is on May 3!'
-  };
-
-  transporter.sendMail(mailOptions, (err, data) => {
-    if (err) {
-      console.error('❌ Email failed:', err);
-      return res.status(500).json({ error: 'Failed to send email' });
-    } else {
-      console.log('✅ Email sent:', data.response);
-      return res.json({ message: 'Email sent successfully!' });
-    }
-  });
-});
-
-// ✅ Run server
+// Server startup
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+});

@@ -1,50 +1,61 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './BrowsePlayerHighestGoal.css';
 
-// Dummy data for testing
-const dummyPlayer = {
-    name: "Ali Al-Hassan",
-    goals: 27,
-    team: "Team Falcons"
-};
-
 const BrowsePlayerHighestGoal = () => {
-    const [player, setPlayer] = useState(null);
+    const [topScorers, setTopScorers] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Hardcoded API base URL
+    const API_BASE_URL = 'http://localhost:3001';
 
     useEffect(() => {
-        // Simulate API call with dummy data
-        const fetchPlayerWithHighestGoals = async () => {
+        const fetchTopScorers = async () => {
             try {
-                // Simulate network delay
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                // Use dummy data instead of actual API call
-                setPlayer(dummyPlayer);
-                
-                // For actual implementation, you would use:
-                // const response = await fetch('/api/players/highest-goals');
-                // const data = await response.json();
-                // setPlayer(data);
-                
+                const response = await axios.get(`${API_BASE_URL}/api/players/top-scorers`);
+                setTopScorers(response.data);
+                setLoading(false);
+                setError(null);
             } catch (error) {
                 console.error('Error fetching player data:', error);
+                setError('Failed to load top scorers data');
+                setLoading(false);
+                
+                if (error.response) {
+                    console.error('Server responded with:', error.response.status);
+                } else if (error.request) {
+                    console.error('No response received from server');
+                }
             }
         };
 
-        fetchPlayerWithHighestGoals();
+        fetchTopScorers();
     }, []);
 
     return (
         <div className="player-highest-goals-container">
-            <h1>Player with the Highest Goals</h1>
-            {player ? (
-                <div className="player-info">
-                    <p><strong>Name:</strong> {player.name}</p>
-                    <p><strong>Goals Scored:</strong> {player.goals}</p>
-                    <p><strong>Team:</strong> {player.team}</p>
-                </div>
-            ) : (
+            <h1>Top Scorers by Tournament</h1>
+            
+            {error && <p className="error-message">{error}</p>}
+            
+            {loading ? (
                 <p className="loading-message">Loading...</p>
+            ) : (
+                topScorers.length > 0 ? (
+                    topScorers.map((tournament) => (
+                        <div key={tournament.tournament_id} className="tournament-scorers">
+                            <h2>{tournament.tournament_name}</h2>
+                            <div className="player-info">
+                                <p><strong>Player:</strong> {tournament.player_name}</p>
+                                <p><strong>Goals:</strong> {tournament.total_goals}</p>
+                                <p><strong>Team:</strong> {tournament.team_name}</p>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <p className="no-data">No top scorers found</p>
+                )
             )}
         </div>
     );

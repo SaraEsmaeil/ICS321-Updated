@@ -1,150 +1,125 @@
+/* Base styles */
 .match-results-container {
-    max-width: 800px;
+    padding: 2rem;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #FFFFFF;
-}
-
-.page-title {
-    color: #002B5B;
+  }
+  
+  .page-title {
     text-align: center;
     margin-bottom: 2rem;
-}
-
-.matches-grid {
+    color: #333;
+  }
+  
+  .matches-grid {
     display: grid;
     gap: 1.5rem;
-}
-
-.match-card {
-    background: #FFFFFF;
-    border: 1px solid #F4F4F4;
-    border-radius: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .match-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     padding: 1.5rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.match-header {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #F4F4F4;
-}
-
-.team {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.team-logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-}
-
-.team-name {
-    font-weight: 600;
-    color: #002B5B;
-}
-
-.match-center {
-    text-align: center;
-}
-
-.match-status {
-    display: block;
-    color: #00B4D8;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 4px;
-}
-
-.score {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #002B5B;
-    margin: 8px 0;
-}
-
-.match-venue {
-    display: block;
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.match-details {
-    padding-top: 1rem;
-}
-
-.competition-info {
+  }
+  
+  .match-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+  }
+  
+  .team {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .team-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .match-center {
+    text-align: center;
+    margin: 0 1rem;
+  }
+  
+  .score {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .match-date, .match-venue {
+    display: block;
     font-size: 0.9rem;
     color: #666;
-}
-
-.goals-container {
-    background: #F4F4F4;
-    border-radius: 8px;
-    padding: 1rem;
-}
-
-.goal-event {
+  }
+  
+  .goals-container {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .goals-list {
+    margin-top: 0.5rem;
+  }
+  
+  .goal-item {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 8px 0;
-    border-bottom: 1px solid #E0E0E0;
-}
-
-.goal-event:last-child {
-    border-bottom: none;
-}
-
-.goal-time {
-    background: #D00000;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.scorer {
-    color: #002B5B;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  
+  .goal-time {
     font-weight: 500;
-}
-
-.player-number {
+    color: #333;
+  }
+  
+  .goal-scorer {
+    flex-grow: 1;
+  }
+  
+  .goal-team {
+    font-size: 0.8rem;
     color: #666;
-    font-size: 0.9em;
-    margin-left: 6px;
-}
-
-.no-goals {
-    text-align: center;
-    color: #666;
-    padding: 1rem;
-    font-style: italic;
-}
-
-@media (max-width: 600px) {
+    margin-left: 0.5rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .matches-grid {
+      grid-template-columns: 1fr;
+    }
+  
     .match-header {
-        grid-template-columns: 1fr;
-        text-align: center;
+      flex-direction: column;
+      gap: 1rem;
     }
-    
+  
     .team {
-        justify-content: center;
+      order: 1;
     }
-    
-    .team:last-child {
-        flex-direction: row-reverse;
+  
+    .match-center {
+      order: 2;
     }
-}
+  }
+  
+  @media (max-width: 480px) {
+    .match-results-container {
+      padding: 1rem;
+    }
+  
+    .score {
+      font-size: 1.5rem;
+    }
+  }

@@ -1,71 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const DeleteTournament = () => {
-    const createDate = (days) => {
-        const date = new Date();
-        date.setDate(date.getDate() + days);
-        return date;
-    };
-
-    const [tournaments, setTournaments] = useState([
-        { 
-            id: 1,
-            name: "Summer Champions Cup",
-            startDate: createDate(7),
-            endDate: createDate(14),
-            location: "Madrid, Spain"
-        },
-        { 
-            id: 2,
-            name: "Youth Football League",
-            startDate: createDate(3),
-            endDate: createDate(10),
-            location: "London, UK"
-        },
-        { 
-            id: 3,
-            name: "World Football Championship",
-            startDate: createDate(-3),
-            endDate: createDate(4),
-            location: "Paris, France"
-        },
-        { 
-            id: 4,
-            name: "City Cup Tournament",
-            startDate: createDate(-5),
-            endDate: createDate(2),
-            location: "Berlin, Germany"
-        },
-        { 
-            id: 5,
-            name: "Winter Soccer Classic",
-            startDate: createDate(-30),
-            endDate: createDate(-15),
-            location: "Moscow, Russia"
-        },
-        { 
-            id: 6,
-            name: "Spring Training Cup",
-            startDate: createDate(-20),
-            endDate: createDate(-10),
-            location: "Rome, Italy"
-        }
-    ]);
-
+    const [tournaments, setTournaments] = useState([]);
     const [selectedTournament, setSelectedTournament] = useState(null);
-
-    const handleDelete = () => {
-        if (selectedTournament) {
-            const updatedTournaments = tournaments.filter(
-                (tournament) => tournament.id !== selectedTournament
-            );
-            setTournaments(updatedTournaments);
-            setSelectedTournament(null);
-            alert('Tournament deleted successfully!');
-        } else {
-            alert('Please select a tournament to delete.');
-        }
-    };
 
     const formatDate = (date) => {
         return new Date(date).toLocaleDateString('en-US', {
@@ -75,67 +13,82 @@ const DeleteTournament = () => {
         });
     };
 
+    // ✅ Fetch tournaments on load
+    useEffect(() => {
+        axios.get('http://localhost:3001/api/tournaments')
+            .then(res => {
+                console.log("API Response:", res.data); // Should show an array now
+                if (Array.isArray(res.data)) {
+                    setTournaments(res.data);
+                } else {
+                    console.error('Expected array but got:', res.data);
+                }
+            })
+            .catch(err => console.error('Error fetching tournaments:', err));
+    }, []);
+    
+    
+    
+
+    // ✅ Handle delete
+    const handleDelete = () => {
+        if (!selectedTournament) {
+            alert("Please select a tournament to delete.");
+            return;
+        }
+
+        axios.delete(`http://localhost:3001/api/tournaments/${selectedTournament}`)
+            .then(() => {
+                alert("Tournament deleted successfully!");
+                setTournaments(prev => prev.filter(t => t.tr_id !== selectedTournament));
+                setSelectedTournament(null);
+            })
+            .catch(err => {
+                console.error("Delete error:", err);
+                alert("Failed to delete tournament.");
+            });
+    };
+
     return (
         <div className="container mt-5">
             <div className="card shadow">
                 <div className="card-body">
                     <h1 className="text-center mb-4">Delete Tournament</h1>
-                    
+
                     <div className="mb-4">
-                        <div className="form-group">
-                            <label htmlFor="tournamentSelect" className="form-label">
-                                Select Tournament:
-                            </label>
-                            <select
-                                id="tournamentSelect"
-                                className="form-select"
-                                value={selectedTournament || ''}
-                                onChange={(e) => setSelectedTournament(Number(e.target.value))}
-                            >
-                                <option value="" disabled>
-                                    -- Select a Tournament --
+                        <label htmlFor="tournamentSelect" className="form-label">Select Tournament:</label>
+                        <select
+                            id="tournamentSelect"
+                            className="form-select"
+                            value={selectedTournament || ''}
+                            onChange={(e) => setSelectedTournament(Number(e.target.value))}
+                        >
+                            <option value="" disabled>-- Select a Tournament --</option>
+                            {Array.isArray(tournaments) && tournaments.map((t) => (
+                                <option key={t.tr_id} value={t.tr_id}>
+                                    {t.tr_name} ({formatDate(t.start_date)} - {formatDate(t.end_date)})
                                 </option>
-                                {tournaments.map((tournament) => (
-                                    <option key={tournament.id} value={tournament.id}>
-                                        {tournament.name} ({formatDate(tournament.startDate)} to {formatDate(tournament.endDate)})
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                            ))}
+                        </select>
                     </div>
 
-                    <div className="d-grid gap-2 mb-4">
-                        <button
-                            onClick={handleDelete}
-                            className="btn btn-danger btn-lg"
-                        >
+                    <div className="d-grid mb-4">
+                        <button className="btn btn-danger btn-lg" onClick={handleDelete}>
                             Delete Tournament
                         </button>
                     </div>
 
-                    <div className="mt-4">
-                        <h4>Remaining Tournaments:</h4>
-                        <div className="list-group">
-                            {tournaments.map((tournament) => (
-                                <div 
-                                    key={tournament.id}
-                                    className="list-group-item d-flex justify-content-between align-items-start"
-                                >
-                                    <div className="ms-2 me-auto">
-                                        <div className="fw-bold">{tournament.name}</div>
-                                        <span className="text-muted">
-                                            {formatDate(tournament.startDate)} - {formatDate(tournament.endDate)}
-                                        </span>
-                                        <div className="text-muted small mt-1">
-                                            Location: {tournament.location}
-                                        </div>
-                                    </div>
-                                    <span className="badge bg-primary rounded-pill">
-                                        ID: {tournament.id}
-                                    </span>
+                    <h4>Remaining Tournaments:</h4>
+                    <div className="list-group">
+                        {Array.isArray(tournaments) && tournaments.map((t) => (
+                            <div key={t.tr_id} className="list-group-item d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div className="fw-bold">{t.tr_name}</div>
+                                    <small>{formatDate(t.start_date)} - {formatDate(t.end_date)}</small>
                                 </div>
-                            ))}
-                        </div>
+                                <span className="badge bg-primary">ID: {t.tr_id}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
